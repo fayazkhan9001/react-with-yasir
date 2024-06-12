@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="container-fluid">
+        <div className="container">
           <Link className="navbar-brand" to="/">
             Navbar
           </Link>
@@ -47,17 +47,20 @@ const Header = () => {
                 </Link>
               </li>
             </ul>
-            <form className="d-flex">
-              <input
-                className="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button className="btn btn-outline-success" type="submit">
-                Search
-              </button>
-            </form>
+
+            <ul className="navbar-nav ms-auto mb-lg-0">
+              <li className="nav-item">
+                <button
+                  type="button"
+                  className="btn btn-primary position-relative"
+                >
+                  Total
+                  <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    0<span className="visually-hidden">unread messages</span>
+                  </span>
+                </button>
+              </li>
+            </ul>
           </div>
         </div>
       </nav>

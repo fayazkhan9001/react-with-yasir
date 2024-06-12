@@ -1,19 +1,40 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Formik, useFormik } from "formik";
+import * as Yup from "yup";
 
 const dataArray = [];
 const Contact = () => {
-  const [data, setData] = useState({
-    fullName: "",
-    email: "",
-    contact: "",
-  });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dataArray.push(data);
-    localStorage.setItem("record", JSON.stringify(dataArray));
-  };
+  const { handleChange, handleBlur, handleSubmit, values, errors, touched } =
+    useFormik({
+      initialValues: {
+        fullName: "",
+        email: "",
+        contact: "",
+      },
+      validationSchema: Yup.object({
+        fullName: Yup.string()
+          .max(15, "character must be 15 or less")
+          .min(4, "character must be 4 or above")
+          .required("Please fill Full Name"),
+        email: Yup.string()
+          .matches(
+            /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/,
+            "Please provide a valid Email"
+          )
+          .required("Please fill the Email"),
+        contact: Yup.string()
+          .matches(
+            /^((\+92)?(0092)?(92)?(0)?)(3)([0-9]{9})$/gm,
+            "Please a valid Number"
+          )
+          .required(),
+      }),
+      onSubmit: () => {
+        dataArray.push(data);
+        localStorage.setItem("record", JSON.stringify(dataArray));
+      },
+    });
 
   return (
     <div>
@@ -23,33 +44,45 @@ const Contact = () => {
             Full Name
           </label>
           <input
-            type="text"
             className="form-control"
             id="fullName"
-            onChange={(e) => setData({ ...data, fullName: e.target.value })}
+            value={values.fullName}
+            onBlur={handleBlur}
+            onChange={handleChange}
           />
+          <label style={{ color: "red" }}>
+            {touched.fullName && errors.fullName ? errors.fullName : null}
+          </label>
         </div>
         <div className="col-12">
           <label htmlFor="email" className="form-label">
             Email
           </label>
           <input
-            type="text"
             className="form-control"
             id="email"
-            onChange={(e) => setData({ ...data, email: e.target.value })}
+            value={values.email}
+            onBlur={handleBlur}
+            onChange={handleChange}
           />
+          <label style={{ color: "red" }}>
+            {touched.email && errors.email ? errors.email : null}
+          </label>
         </div>
         <div className="col-12">
           <label htmlFor="contact" className="form-label">
             Contact
           </label>
           <input
-            type="text"
             className="form-control"
             id="contact"
-            onChange={(e) => setData({ ...data, contact: e.target.value })}
+            value={values.contact}
+            onBlur={handleBlur}
+            onChange={handleChange}
           />
+          <label style={{ color: "red" }}>
+            {errors.contact && touched.contact ? errors.contact : null}
+          </label>
         </div>
 
         <div className="col-12">
