@@ -1,30 +1,34 @@
-import React, { createContext } from "react";
+import React from "react";
 import Home from "./pages/Home";
+import About from "./pages/About";
+import Contact from "./forms/Contact";
 
-//What is useContext HOOK
-//create, Provider, useContext
-//How to use it.
-
-//1-create context
-const data = createContext();
-const data1 = createContext();
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  RouterProvider,
+  Route,
+} from "react-router-dom";
+import Layout from "./pages/Layout";
+import DataList from "./forms/DataList";
 
 const App = () => {
-  const name = "ali";
-  const age = 23;
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/datalist" element={<DataList />} />
+      </Route>
+    )
+  );
   return (
     <div>
-      {/* 2-Contex Provider */}
-      <data.Provider value={name}>
-        <data1.Provider value={age}>
-          <Home />
-        </data1.Provider>
-      </data.Provider>
+      <RouterProvider router={router} />
     </div>
   );
 };
 
 export default App;
-
-//3-export
-export { data, data1 };
