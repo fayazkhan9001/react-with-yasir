@@ -1,0 +1,18 @@
+Persist: 
+state ka persist hona b zarori hay.
+1-Study redux persist and Rehyderation
+    redux persist : go npm and install redux persist
+                    basically local storage is a persist storage
+                    redux persist package internly used browser local storage, and redux done it by itself.
+    
+    Rehyderation : state ko ja k local storage may save krdena oar jo he component refresh ho ya browser re-open ho to local storage may ja k waha sy state ko utah k wapis store may available kredena.
+
+2-Implement redux-persist logic inside your store.
+    i-import depencies : persistStore, persistReducer, storage
+    2-configuration objects : persistConfig
+    3-call persistReducer : take two parameters (persistConfig, rootReducer)        
+                        rootReducer : ke zarorat tab pharti hay jab app k pass 1 sy ziada reducer ho
+    4-import depency of combine reducers
+        create combineReducers
+    5-pass the persistedReducer into configureStore
+    6-include persistGate in your main.jsx

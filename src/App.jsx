@@ -11,7 +11,6 @@ import {
 } from "react-router-dom";
 import Layout from "./pages/Layout";
 import DataList from "./forms/DataList";
-
 const App = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const depositSlice = createSlice({
+export const bankSlice = createSlice({
   name: "bank",
   initialState: {
     value: 0,
@@ -15,4 +15,4 @@ export const depositSlice = createSlice({
   },
 });
 
-export const { deposit, withdraw } = depositSlice.actions;
+export const { deposit, withdraw } = bankSlice.actions;

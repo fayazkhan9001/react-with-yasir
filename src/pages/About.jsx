@@ -1,13 +1,14 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { deposit, withdraw } from "./redux/depositeReducer";
+import { deposit, withdraw } from "./redux/bankReducer";
+import { useSelector, useDispatch } from "react-redux";
 const About = () => {
   const dispatch = useDispatch();
-  const { value } = useSelector((state) => state);
+  const { bank } = useSelector((a) => a);
 
   const depositAmount = () => {
     dispatch(deposit());
   };
+
   const withdrawAmount = () => {
     dispatch(withdraw());
   };
@@ -25,7 +26,7 @@ const About = () => {
           Deposit
         </button>
         <button onClick={withdrawAmount}>Withdraw</button>
-        <p>${value}</p>
+        <p>{bank.value}</p>
       </div>
     </div>
   );

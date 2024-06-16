@@ -1,7 +1,8 @@
 import React from "react";
-
+import { useSelector } from "react-redux";
 const Home = () => {
-  return <div>Home</div>;
+  const { bank } = useSelector((a) => a);
+  return <div>Home ${bank.value}</div>;
 };
 
 export default Home;

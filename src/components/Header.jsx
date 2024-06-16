@@ -1,7 +1,8 @@
-import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const { bank } = useSelector((state) => state);
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -42,7 +43,7 @@ const Header = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="#">
+                <Link className="nav-link" to="/counter">
                   Link
                 </Link>
               </li>
@@ -56,7 +57,8 @@ const Header = () => {
                 >
                   Total
                   <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    0<span className="visually-hidden">unread messages</span>
+                    {bank.value}
+                    <span className="visually-hidden">unread messages</span>
                   </span>
                 </button>
               </li>
