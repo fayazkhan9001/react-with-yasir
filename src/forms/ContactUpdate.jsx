@@ -2,15 +2,21 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { addToContact } from "../pages/redux/contactReducer";
+import { updateContact } from "../pages/redux/contactReducer";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import DataList from "./DataList";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const dataArray = [];
-const Contact = () => {
+const ContactUpdate = () => {
   const dispatch = useDispatch();
+  const { contactReducer } = useSelector((state) => state);
   const navigate = useNavigate();
+  const { id } = useParams();
+
+  const foundArr = contactReducer.contacts.find((item) => item.id == id);
+
   const { handleChange, handleBlur, handleSubmit, values, errors, touched } =
     useFormik({
       initialValues: {
@@ -37,19 +43,21 @@ const Contact = () => {
           .required(),
       }),
       onSubmit: (values) => {
-        const newContact = {
+        const newValues = {
           ...values,
           id: Date.now(),
         };
-        dispatch(addToContact(newContact));
 
-        navigate("/DataList");
+        dispatch(updateContact(newValues));
+
+        // navigate("/DataList");
       },
     });
 
   return (
     <div>
       <form className="row g-3 w-50 p-5" onSubmit={handleSubmit}>
+        <h3>Update Contact</h3>
         <div className="col-12">
           <label htmlFor="fullName" className="form-label">
             Full Name
@@ -98,7 +106,7 @@ const Contact = () => {
 
         <div className="col-12">
           <button type="submit" className="btn btn-primary">
-            Send
+            Update
           </button>
         </div>
       </form>
@@ -107,4 +115,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default ContactUpdate;

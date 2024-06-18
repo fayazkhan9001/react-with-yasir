@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import Layout from "./pages/Layout";
 import DataList from "./forms/DataList";
+import ContactUpdate from "./forms/ContactUpdate";
 const App = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/contactupdate/:id" element={<ContactUpdate />} />
         <Route path="/about" element={<About />} />
         <Route path="/datalist" element={<DataList />} />
       </Route>

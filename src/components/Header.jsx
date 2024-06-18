@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-
 const Header = () => {
-  const { bank } = useSelector((state) => state);
+  const { contactReducer } = useSelector((a) => a);
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -57,7 +56,7 @@ const Header = () => {
                 >
                   Total
                   <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    {bank.value}
+                    {contactReducer.contacts.length}{" "}
                     <span className="visually-hidden">unread messages</span>
                   </span>
                 </button>

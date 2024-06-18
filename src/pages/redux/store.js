@@ -1,5 +1,6 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { bankSlice } from "./bankReducer";
+import { contactSlice } from "./contactReducer";
 
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
@@ -10,7 +11,8 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-  bank: bankSlice.reducer,
+  bankReducer: bankSlice.reducer,
+  contactReducer: contactSlice.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
