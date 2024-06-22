@@ -3,7 +3,6 @@ import { deposit, withdraw } from "./redux/bankReducer";
 import { useSelector, useDispatch } from "react-redux";
 const About = () => {
   const dispatch = useDispatch();
-  const { bank } = useSelector((a) => a);
 
   const depositAmount = () => {
     dispatch(deposit());
@@ -26,7 +25,6 @@ const About = () => {
           Deposit
         </button>
         <button onClick={withdrawAmount}>Withdraw</button>
-        <p>{bank.value}</p>
       </div>
     </div>
   );

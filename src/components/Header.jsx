@@ -46,6 +46,11 @@ const Header = () => {
                   Link
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/products">
+                  Products API
+                </Link>
+              </li>
             </ul>
 
             <ul className="navbar-nav ms-auto mb-lg-0">
