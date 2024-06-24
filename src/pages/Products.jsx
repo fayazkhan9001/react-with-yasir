@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import loader from "../assets/loader.gif";
 import axios from "axios";
-import { json } from "react-router-dom";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -10,12 +9,6 @@ const Products = () => {
 
   const getData = () => {
     setLoading(true);
-    // fetch("https://api.escuelajs.co/api/v1/products")
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     setProducts(data);
-    //     setLoading(false);
-    //   });
 
     axios.get("https://fakestoreapi.com/products").then((response) => {
       setProducts(response.data);
@@ -108,7 +101,7 @@ const Card = ({ product }) => {
   };
   return (
     <div className="col-md-3 mb-4">
-      <div className="card" onClick={() => handleUpdate(product.id)}>
+      <div className="card">
         <img
           src={product.image}
           className="card-img-top w-50 mx-auto pt-2"
@@ -128,6 +121,12 @@ const Card = ({ product }) => {
             onClick={() => handleDelete(product.id)}
           >
             Delete
+          </button>
+          <button
+            className="btn btn-danger"
+            onClick={() => handleUpdate(product.id)}
+          >
+            update
           </button>
         </div>
       </div>
